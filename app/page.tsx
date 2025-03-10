@@ -1,5 +1,5 @@
 'use client';
-import Body from './components/Investment';
+import Body from './investment/page';
 
 export default function Home() {
   const bodyContent = <Body />;
