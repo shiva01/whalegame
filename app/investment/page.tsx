@@ -12,7 +12,7 @@ const Investment: React.FC = () => {
           .then((data) => setProducts(data));
     }, []);
 
-    if (!product) {
+    if (!products) {
         return <div>Loading...</div>;
     }
 
