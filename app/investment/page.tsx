@@ -58,7 +58,7 @@ const Investment: React.FC = () => {
                                 </tr>
                                 <tr>
                                     <td style={{ padding: '0px 8px'}}>
-                                        Strategy <span className={styles.value }>{product.currency}</span>
+                                        Currency <span className={styles.value }>{product.currency}</span>
                                     </td>
                                     <td>
                                         Strategy <span className={styles.value }>{product.strategy}</span>
@@ -66,7 +66,7 @@ const Investment: React.FC = () => {
                                 </tr>
                                 <tr>
                                     <td style={{ padding: '0px 8px'}}>
-                                        Sub status <span className={styles.value }>{product.sub_status}</span>
+                                        Status <span className={styles.value }>{product.sub_status}</span>
                                     </td>
                                 </tr>
                             </tbody>
