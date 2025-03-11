@@ -65,7 +65,7 @@ const Investment: React.FC = () => {
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style={{ padding: '0px 8px'}}>
                                         Sub status <span className={styles.value }>{product.sub_status}</span>
                                     </td>
                                 </tr>
