@@ -12,6 +12,10 @@ const LoanPage: React.FC = () => {
           .then((data) => setProducts(data));
     }, []);
 
+    if (!products) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className={styles.productList}>
             {products.map((product, index) => (

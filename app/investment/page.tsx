@@ -12,6 +12,10 @@ const Investment: React.FC = () => {
           .then((data) => setProducts(data));
     }, []);
 
+    if (!product) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div className={styles.productList}>
             {products.map((product, index) => (
