@@ -3,18 +3,24 @@
 import React, { useEffect, useState} from 'react';
 import styles from '../styles/Body.module.css'; 
 
+interface Product {
+    name: string;
+    source: string;
+    apr: number;
+    drawdown: number;
+    strategy: string;
+    sub_status: string;
+    description: string;
+}
+
 const Investment: React.FC = () => {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
         fetch('/api/investment_data')
           .then((response) => response.json())
           .then((data) => setProducts(data));
     }, []);
-
-    if (!products) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <div className={styles.productList}>

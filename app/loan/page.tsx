@@ -3,18 +3,24 @@
 import React, { useEffect, useState} from 'react';
 import styles from '../styles/Body.module.css'; 
 
+interface Product {
+    asset: string;
+    source: string;
+    interest_rate: number;
+    mortgage_rate: number;
+    supply_amount: string;
+    status: string;
+    description: string;
+}
+
 const LoanPage: React.FC = () => {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
         fetch('/api/loan_data')
           .then((response) => response.json())
           .then((data) => setProducts(data));
     }, []);
-
-    if (!products) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <div className={styles.productList}>
