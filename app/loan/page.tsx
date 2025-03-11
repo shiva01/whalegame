@@ -61,6 +61,8 @@ const LoanPage: React.FC = () => {
                     <div className={styles.productDescription} style={{ padding: '0px 8px'}}>{product.description}</div>
                 </div>
             ))}
+            <div className={styles.invisiable}></div>
+            <div className={styles.invisiable}></div>
         </div>
     );
 };

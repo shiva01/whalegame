@@ -16,6 +16,13 @@
     transition: transform 0.2s;
 }
 
+.invisiable {
+    content: "";
+    margin: 10px;
+    flex: 1 1 calc(30% - 20px);
+    visibility: hidden;
+}
+
 .productCard:hover {
     transform: scale(1.05);
 }
@@ -60,6 +67,12 @@
 @media (max-width: 1250px) {
     .productCard {
         flex: 1 1 calc(45% - 20px);
+    }
+
+    .invisiable {
+        content: "";
+        flex: 1 1 calc(45% - 20px);
+        visibility: hidden;
     }
 }
 
