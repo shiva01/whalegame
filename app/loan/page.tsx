@@ -1,27 +1,16 @@
-import React from 'react';
+'use client'
+
+import React, { useEffect, useState} from 'react';
 import styles from '../styles/Body.module.css'; 
 
 const LoanPage: React.FC = () => {
-    const products = [
-        {
-            asset: 'BTC抵押借贷U',
-            source: 'From VV(Spider)',
-            supplyAmount: '30M',
-            interestRate: '9%',
-            mortgageRate: '60%',
-            status: 'Ongoing',
-            description: '只接受比特币做抵押物。额度有时限。已借出5M。',
-        },
-        {
-            asset: '矿机抵押借贷U',
-            source: 'From VV(Spider)',
-            supplyAmount: "5M",
-            interestRate: '15%',
-            mortgageRate: '70%',
-            status: 'Ongoing',
-            description: '接受矿机做抵押物，需要担保。',
-        }
-    ]
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/loan_data')
+          .then((response) => response.json())
+          .then((data) => setProducts(data));
+    }, []);
 
     return (
         <div className={styles.productList}>
@@ -30,37 +19,36 @@ const LoanPage: React.FC = () => {
                     <table className={styles.productTable}>
                         <thead className={styles.tableHeader}>
                             <tr>
-                                <td>{product.asset}</td>
-                                <td>{product.source}</td>
+                                <td className={styles.title}>{product.asset}</td>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody className={styles.tableBody}>
                             <tr>
+                                <td className={styles.subtitle} style={{ padding: '2px 8px'}}>{product.source}</td>
+                            </tr>
+                            <tr>
                                 <td colSpan={2} style={{ height: '10px', backgroundColor: 'transparent' }}></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <span className={styles.subtitle}>Interest: </span> 
-                                    {product.interestRate}
+                                <td style={{ padding: '0px 8px'}}>
+                                    Interest <span className={styles.value} style={{ color: 'green'}}>{product.interest_rate}%</span> 
                                 </td>
                                 <td>
-                                    <span className={styles.subtitle}>Mortgage: </span>
-                                    {product.mortgageRate}
+                                    Mortgage <span className={styles.value} style={{ color: 'red'}}>{product.mortgage_rate}%</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <span className={styles.subtitle}>Amount: </span> 
-                                    {product.supplyAmount}
+                                <td style={{ padding: '0px 8px'}}>
+                                    Amount <span className={styles.value}>{product.supply_amount}</span> 
                                 </td>
                                 <td>
-                                    <span className={styles.subtitle}>Status: </span>
-                                    {product.status}
+                                    Status <span className={styles.value}>{product.status}</span>             
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div className={styles.productDescription}>{product.description}</div>
+                    <div className={styles.productDescription} style={{ padding: '0px 8px'}}>{product.description}</div>
                 </div>
             ))}
         </div>

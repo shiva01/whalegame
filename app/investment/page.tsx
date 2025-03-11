@@ -1,30 +1,16 @@
-import React from 'react';
+'use client'
+
+import React, { useEffect, useState} from 'react';
 import styles from '../styles/Body.module.css'; 
 
 const Investment: React.FC = () => {
-    const products = [
-        {
-            name: 'QuantMesh AI策略',
-            source: '已实盘验证8个月(Lee)',
-            apr: '64.2%',
-            drawdown: '3.32%',
-            description: '市场快速下跌时买入，反弹后快速卖出。赚取市场情绪的收益。通过AI决策具体的买卖和止损点。',
-        },
-        {
-            name: 'Jupiter做市+对冲',
-            source: '实盘验证中(Lee)',
-            apr: '47.2%',
-            drawdown: '2%',
-            description: 'Jupiter为solana最大defi协议。此策略在Jupiter的perps做市，并对冲池子资金的币种风险和头寸风险。市场中性策略。',
-        },
-        {
-            name: 'B***b',
-            source: "From L2Y Research",
-            apr: '34.12%',
-            drawdown: '6%',
-            description: 'U本位策略。产品稳定运行5年。2020-2023年平均年收益20%。',
-        },
-    ];
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetch('/api/investment_data')
+          .then((response) => response.json())
+          .then((data) => setProducts(data));
+    }, []);
 
     return (
         <div className={styles.productList}>
@@ -33,27 +19,36 @@ const Investment: React.FC = () => {
                     <table className={styles.productTable}>
                         <thead className={styles.tableHeader}>
                             <tr>
-                                <td>{product.name}</td>
-                                <td>{product.source}</td>
+                                <td className={styles.title}>{product.name}</td>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody className={styles.tableBody}>
                             <tr>
+                                <td className={styles.subtitle} style={{ padding: '2px 8px'}}>{product.source}</td>
+                            </tr>
+                            <tr>
                                 <td colSpan={2} style={{ height: '10px', backgroundColor: 'transparent' }}></td>
                             </tr>
                             <tr>
-                                <td>
-                                    <span className={styles.subtitle}>APR: </span> 
-                                    {product.apr}
+                                <td style={{ padding: '0px 8px'}}>
+                                    APR <span className={styles.value } style={{color: 'green'}}>{product.apr}%</span>
                                 </td>
                                 <td>
-                                    <span className={styles.subtitle}>Max drawdown: </span>
-                                    {product.drawdown}
+                                    Max drawdown <span className={styles.value } style={{color: 'red'}}>{product.drawdown}%</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{ padding: '0px 8px'}}>
+                                    Strategy <span className={styles.value }>{product.strategy}</span>
+                                </td>
+                                <td>
+                                    Sub Status <span className={styles.value }>{product.sub_status}</span>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <div className={styles.productDescription}>{product.description}</div>
+                    <div className={styles.productDescription } style={{ padding: '0px 8px'}}>{product.description}</div>
                 </div>
             ))}
         </div>
