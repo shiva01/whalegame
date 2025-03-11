@@ -12,7 +12,6 @@ const Investment: React.FC = () => {
           .then((data) => setProducts(data));
     }, []);
 
-    console.log(products);
     if (!products) {
         return <div>Loading...</div>;
     }
