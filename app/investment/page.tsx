@@ -8,6 +8,7 @@ interface Product {
     source: string;
     apr: number;
     drawdown: number;
+    currency: string;
     strategy: string;
     sub_status: string;
     description: string;
@@ -57,8 +58,13 @@ const Investment: React.FC = () => {
                                 </tr>
                                 <tr>
                                     <td style={{ padding: '0px 8px'}}>
+                                        Strategy <span className={styles.value }>{product.currency}</span>
+                                    </td>
+                                    <td>
                                         Strategy <span className={styles.value }>{product.strategy}</span>
                                     </td>
+                                </tr>
+                                <tr>
                                     <td>
                                         Sub status <span className={styles.value }>{product.sub_status}</span>
                                     </td>
