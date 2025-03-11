@@ -53,7 +53,7 @@ const Investment: React.FC = () => {
                                     Strategy <span className={styles.value }>{product.strategy}</span>
                                 </td>
                                 <td>
-                                    Sub Status <span className={styles.value }>{product.sub_status}</span>
+                                    Sub status <span className={styles.value }>{product.sub_status}</span>
                                 </td>
                             </tr>
                         </tbody>
