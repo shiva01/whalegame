@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 const Header = () => {
     const t = useTranslations();
-    const [locale, setLocale] = useState<Locale>(useLocale()); 
+    const [locale, setLocale] = useState<Locale>(useLocale() as Locale); 
 
     const toggleLocale = () => {
         const newLocale = locale === 'zh' ? 'en' : 'zh';
