@@ -3,9 +3,9 @@
 import Link from "next/link";
 import styles from '../styles/Header.module.css';
 import { useLocale, useTranslations } from 'next-intl';
-import { getUserLocale, setUserLocale} from '../../services/locale';
+import { setUserLocale} from '../../services/locale';
 import { Locale } from '../../i18n/config';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const Header = () => {
     const t = useTranslations();
