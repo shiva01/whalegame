@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState} from 'react';
 import styles from '../styles/Body.module.css'; 
+import { useTranslations } from 'next-intl';
 
 interface Product {
     asset: string;
@@ -16,6 +17,7 @@ interface Product {
 const LoanPage: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const t = useTranslations();
 
     useEffect(() => {
         fetch('/api/loan_data')
@@ -42,25 +44,25 @@ const LoanPage: React.FC = () => {
                             </thead>
                             <tbody className={styles.tableBody}>
                                 <tr>
-                                    <td className={styles.subtitle} style={{ padding: '2px 8px'}}>{product.source}</td>
+                                    <td className={styles.subtitle} style={{ padding: '2px 8px'}}>{t('verify')} {product.source}</td>
                                 </tr>
                                 <tr>
                                     <td colSpan={2} style={{ height: '10px', backgroundColor: 'transparent' }}></td>
                                 </tr>
                                 <tr>
                                     <td style={{ padding: '0px 8px'}}>
-                                        Interest <span className={styles.value} style={{ color: 'green'}}>{product.interest_rate}%</span> 
+                                        {t('interest')} <span className={styles.value} style={{ color: 'green'}}>{product.interest_rate}%</span> 
                                     </td>
                                     <td>
-                                        Mortgage <span className={styles.value} style={{ color: 'red'}}>{product.mortgage_rate}%</span>
+                                        {t('mortgage')} <span className={styles.value} style={{ color: 'red'}}>{product.mortgage_rate}%</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ padding: '0px 8px'}}>
-                                        Amount <span className={styles.value}>{product.supply_amount}</span> 
+                                        {t('amount')} <span className={styles.value}>{product.supply_amount}</span> 
                                     </td>
                                     <td>
-                                        Status <span className={styles.value}>{product.status}</span>             
+                                        {t('status')} <span className={styles.value}>{product.status}</span>             
                                     </td>
                                 </tr>
                             </tbody>

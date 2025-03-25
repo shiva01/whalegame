@@ -1,6 +1,6 @@
 .navbar {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: 15px 0px;
     background-color: #1F2D3D;
@@ -14,15 +14,16 @@
     margin-right: 50px;
 }
 
-/* Navigation Links */
 .navLinks {
     list-style: none;
     display: flex;
     gap: 25px;
 }
 
-.navLinks li {
-    display: inline;
+.localeButton {
+    margin-left: auto;
+    margin-right: 50px;
+    cursor: pointer !important;
 }
 
 .navLinks a {

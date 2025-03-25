@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState} from 'react';
 import styles from '../styles/Body.module.css'; 
+import { useTranslations } from 'next-intl';
 
 interface Product {
     name: string;
@@ -11,12 +12,14 @@ interface Product {
     currency: string;
     strategy: string;
     sub_status: string;
+    entry: string;
     description: string;
 }
 
 const Investment: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const t = useTranslations();
 
     useEffect(() => {
         fetch('/api/investment_data')
@@ -43,30 +46,33 @@ const Investment: React.FC = () => {
                             </thead>
                             <tbody className={styles.tableBody}>
                                 <tr>
-                                    <td className={styles.subtitle} style={{ padding: '2px 8px'}}>{product.source}</td>
+                                    <td className={styles.subtitle} style={{ padding: '2px 8px'}}>{t('verify')} {product.source}</td>
                                 </tr>
                                 <tr>
                                     <td colSpan={2} style={{ height: '10px', backgroundColor: 'transparent' }}></td>
                                 </tr>
                                 <tr>
                                     <td style={{ padding: '0px 8px'}}>
-                                        APR <span className={styles.value } style={{color: 'green'}}>{product.apr}%</span>
+                                        {t('apr')} <span className={styles.value } style={{color: 'green'}}>{product.apr}%</span>
                                     </td>
                                     <td>
-                                        Max drawdown <span className={styles.value } style={{color: 'red'}}>{product.drawdown}%</span>
+                                        {t('drawdown')} <span className={styles.value } style={{color: 'red'}}>{product.drawdown}%</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ padding: '0px 8px'}}>
-                                        Currency <span className={styles.value }>{product.currency}</span>
+                                        {t('currency')} <span className={styles.value }>{product.currency}</span>
                                     </td>
                                     <td>
-                                        Strategy <span className={styles.value }>{product.strategy}</span>
+                                        {t('strategy')} <span className={styles.value }>{product.strategy}</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td style={{ padding: '0px 8px'}}>
-                                        Status <span className={styles.value }>{product.sub_status}</span>
+                                        {t('status')} <span className={styles.value }>{product.sub_status}</span>
+                                    </td>
+                                    <td>
+                                        {t('entry')} <span className={styles.value }>{product.entry}</span>
                                     </td>
                                 </tr>
                             </tbody>
