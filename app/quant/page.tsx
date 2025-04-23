@@ -44,7 +44,7 @@ const Investment: React.FC = () => {
                             <thead className={styles.tableHeader}>
                                 <tr>
                                     <td className={styles.title}>
-                                        {locale === 'zh' ? product.name_en : product.name}
+                                        {locale === 'zh' ? product.name : product.name_en}
                                     </td>
                                     <td></td>
                                 </tr>

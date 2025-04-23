@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState} from 'react';
 import styles from '../styles/Body.module.css'; 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import { Locale } from '../../i18n/config';
 
 interface Product {
     asset: string;
+    asset_en: string;
     source: string;
     interest_rate: number;
     mortgage_rate: number;
@@ -17,6 +19,7 @@ interface Product {
 const LoanPage: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const locale = useLocale() as Locale;
     const t = useTranslations();
 
     useEffect(() => {
@@ -38,7 +41,9 @@ const LoanPage: React.FC = () => {
                         <table className={styles.productTable}>
                             <thead className={styles.tableHeader}>
                                 <tr>
-                                    <td className={styles.title}>{product.asset}</td>
+                                    <td className={styles.title}>
+                                        {locale === 'zh' ? product.asset : product.asset_en}
+                                    </td>
                                     <td></td>
                                 </tr>
                             </thead>
