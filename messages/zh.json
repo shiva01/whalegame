@@ -12,5 +12,6 @@
     "mortgage": "抵押率",
     "amount": "总量",
     "entry": "起投金额",
-    "verify": "来自"
+    "verify": "来自",
+    "ongoing": "进行中"
 }

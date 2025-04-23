@@ -62,7 +62,7 @@ const LoanPage: React.FC = () => {
                                         {t('amount')} <span className={styles.value}>{product.supply_amount}</span> 
                                     </td>
                                     <td>
-                                        {t('status')} <span className={styles.value}>{product.status}</span>             
+                                        {t('status')} <span className={styles.value}>{t(product.status)}</span>             
                                     </td>
                                 </tr>
                             </tbody>
