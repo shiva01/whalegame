@@ -2,10 +2,12 @@
 
 import React, { useEffect, useState} from 'react';
 import styles from '../styles/Body.module.css'; 
-import { useTranslations } from 'next-intl';
+import {  useLocale, useTranslations } from 'next-intl';
+import { Locale } from '../../i18n/config';
 
 interface Product {
     name: string;
+    name_en: string;
     source: string;
     apr: number;
     drawdown: number;
@@ -19,6 +21,7 @@ interface Product {
 const Investment: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
+    const locale = useLocale() as Locale;
     const t = useTranslations();
 
     useEffect(() => {
@@ -40,7 +43,9 @@ const Investment: React.FC = () => {
                         <table className={styles.productTable}>
                             <thead className={styles.tableHeader}>
                                 <tr>
-                                    <td className={styles.title}>{product.name}</td>
+                                    <td className={styles.title}>
+                                        {locale === 'zh' ? product.name_en : product.name}
+                                    </td>
                                     <td></td>
                                 </tr>
                             </thead>
