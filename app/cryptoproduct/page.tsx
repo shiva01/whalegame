@@ -28,6 +28,7 @@ interface Loan {
     supply_amount: string;
     status: string;
     description: string;
+    description_en: string;
 }
 
 const Investment: React.FC = () => {
