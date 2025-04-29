@@ -1,4 +1,5 @@
 {
+    "cryptoproduct": "Crypto产品",
     "quant": "量化",
     "loan": "借贷",
     "hedging": "套保",
@@ -13,5 +14,6 @@
     "amount": "总量",
     "entry": "起投金额",
     "verify": "实测",
-    "ongoing": "进行中"
+    "ongoing": "进行中",
+    "chinesestock": "中概股"
 }

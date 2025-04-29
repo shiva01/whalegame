@@ -21,10 +21,8 @@ const Header = () => {
         <nav className={styles.navbar}>                    
             <div className={styles.logo}>Trust and Comfort</div>
             <ul className={styles.navLinks}>
-                <li><Link href="/quant"><span>{t('quant')}</span></Link></li>
-                <li><Link href="/loan"><span>{t('loan')}</span></Link></li>
-                <li><Link href="/hedging"><span>{t('hedging')}</span></Link></li>
-                <li><Link href="/smart-money"><span>{t('smart-money')}</span></Link></li>
+                <li><Link href="/chinesestock"><span>{t('chinesestock')}</span></Link></li>
+                <li><Link href="/cryptoproduct"><span>{t('cryptoproduct')}</span></Link></li>
                 <li> </li>
             </ul>
             <div className={styles.localeButton} onClick={toggleLocale}>

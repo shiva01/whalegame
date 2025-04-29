@@ -1,4 +1,5 @@
 {
+    "cryptoproduct": "Crypto Products",
     "quant": "Quant",
     "loan": "Loan",
     "hedging": "Hedging",
@@ -13,5 +14,6 @@
     "amount": "Amount",
     "entry": "Min Investment",
     "verify": "Verified by",
-    "ongoing": "Ongoing"
+    "ongoing": "Ongoing",
+    "chinesestock": "Chinese Stocks"
 }

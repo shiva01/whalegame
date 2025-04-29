@@ -1,5 +1,5 @@
 'use client';
-import Body from './quant/page';
+import Body from './chinesestock/page';
 
 export default function Home() {
   const bodyContent = <Body />;

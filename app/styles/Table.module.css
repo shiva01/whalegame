@@ -1,0 +1,68 @@
+.container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #1F2D3D; 
+    color: #ffffff; 
+}
+
+.tabContainer {
+    margin-bottom: 20px;
+}
+
+.tabButton {
+    margin-right: 10px;
+    padding: 2px 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff; 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.tabButton:hover {
+    background-color: #0056b3;
+}
+
+.tabButton.active {
+    background-color: #0056b3;
+}
+
+.description {
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list li {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #2A3B4D;
+}
+
+.stockTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #2A3B4D;
+    color: #ffffff;
+}
+
+.stockTable th,
+.stockTable td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.stockTable th {
+    background-color: #1F2D3D;
+    font-weight: bold;
+}
