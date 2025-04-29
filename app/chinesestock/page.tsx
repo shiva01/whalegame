@@ -2,8 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Table.module.css';
-import { useLocale, useTranslations } from 'next-intl';
-import { Locale } from '../../i18n/config';
 
 interface Chinesestock {
     name: string;
@@ -18,8 +16,6 @@ const Investment: React.FC = () => {
     const [activeTab, setActiveTab] = useState<string>('all');
     const [chinesestocks, setChinesestocks] = useState<Chinesestock[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const locale = useLocale() as Locale;
-    const t = useTranslations();
 
     useEffect(() => {
         fetch('/api/chinesestock_data')
