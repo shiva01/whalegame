@@ -17,6 +17,8 @@ interface Product {
     entry: string;
     description: string;
     description_en: string;
+    short: string;
+    test_fund_amount: number;
 }
 
 interface Loan {
@@ -37,6 +39,10 @@ const Investment: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const locale = useLocale() as Locale;
     const t = useTranslations();
+    const [livetradingData, setLivetradingData] = useState<{ [key: string]: any }>({}); 
+    const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
+    const [tooltipData, setTooltipData] = useState<string>('');
+    const [tooltipPosition, setTooltipPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
 
     useEffect(() => {
         fetch('/api/investment_data')
@@ -55,6 +61,51 @@ const Investment: React.FC = () => {
               setLoading(false);
           });
     }, []);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch('/api/livetrading_data', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  offset: 0,
+                  limit: -1,
+                  dataIntervalId: 2,
+                  timezone: 'hkt',
+                  reportPoolId: 'j1r0l',
+                  dateRange: {
+                    startMs: 0,
+                    endMs: 9999999999999
+                  }
+                })
+            });
+            const data = await response.json();
+            setLivetradingData({ slp_jupiter: data });
+        };
+        fetchData();
+    }, []);
+
+    const handleTooltipToggle = (data: string, event: React.MouseEvent) => {
+        setTooltipData(data);
+        setTooltipVisible(true);
+        const rect = event.currentTarget.getBoundingClientRect();
+        setTooltipPosition({ top: rect.top - 40, left: rect.left });
+    };
+
+    const handleClickOutside = (event: MouseEvent) => {
+        if (tooltipVisible) {
+            setTooltipVisible(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [tooltipVisible]);
 
     return (
         loading ? (
@@ -78,6 +129,14 @@ const Investment: React.FC = () => {
                                     <tbody className={styles.tableBody}>
                                         <tr>
                                             <td className={styles.subtitle} style={{ padding: '2px 8px'}}>{t('verify')} {product.source}</td>
+                                            {livetradingData[product.short] && (
+                                                <td 
+                                                    onClick={(e) => handleTooltipToggle(`Test Amount: ${product.test_fund_amount}, Running Days: ${livetradingData[product.short].runningDays}, APR: ${livetradingData[product.short].apr}, Sharpe Ratio: ${livetradingData[product.short].sharpeRatio}`, e)}
+                                                    style={{ cursor: 'pointer', color: 'blue' }}
+                                                >
+                                                    {t('Net')} {livetradingData[product.short].netValue}
+                                                </td>
+                                            )}
                                         </tr>
                                         <tr>
                                             <td colSpan={2} style={{ height: '10px', backgroundColor: 'transparent' }}></td>
@@ -112,14 +171,20 @@ const Investment: React.FC = () => {
                             </div>
                         ))
                     }
-                    {products.length % 3 === 1 && (
-                        <>
-                            <div className={styles.invisiable}></div>
-                            <div className={styles.invisiable}></div>
-                        </>
-                    )}
-                    {products.length % 3 === 2 && (
+                    <>
                         <div className={styles.invisiable}></div>
+                        <div className={styles.invisiable}></div>
+                    </>
+                    {tooltipVisible && (
+                        <div 
+                            className={styles.tooltip} 
+                            style={{ 
+                                top: tooltipPosition.top, 
+                                left: tooltipPosition.left, 
+                            }}
+                        >
+                            {tooltipData}
+                        </div>
                     )}
                 </div>
                 <h2 className={styles.productListTitle}>{t('loan')}</h2>
@@ -165,15 +230,10 @@ const Investment: React.FC = () => {
                             </div>
                         ))
                     }
-                    {loans.length % 3 === 1 && (
-                        <>
-                            <div className={styles.invisiable}></div>
-                            <div className={styles.invisiable}></div>
-                        </>
-                    )}
-                    {loans.length % 3 === 2 && (
+                    <>
                         <div className={styles.invisiable}></div>
-                    )}
+                        <div className={styles.invisiable}></div>
+                    </>
                 </div>
                 <h2 className={styles.productListTitle}>{t('hedging')}</h2>
                 <div className={styles.productList}>

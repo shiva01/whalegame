@@ -13,7 +13,11 @@
     "mortgage": "Mortgage",
     "amount": "Amount",
     "entry": "Min Investment",
-    "verify": "Verified by",
+    "verify": "Verifing by",
     "ongoing": "Ongoing",
-    "chinesestock": "Chinese Stocks"
+    "chinesestock": "Chinese Stocks",
+    "Net": "Net",
+    "testAmount": "Test Amount",
+    "runningDays": "Running Days",
+    "sharpeRatio": "Sharpe Ratio"
 }

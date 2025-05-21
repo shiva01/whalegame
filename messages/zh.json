@@ -15,5 +15,9 @@
     "entry": "起投金额",
     "verify": "实测",
     "ongoing": "进行中",
-    "chinesestock": "中概股"
+    "chinesestock": "中概股",
+    "Net": "净值",
+    "testAmount": "测试金额",
+    "runningDays": "运行天数",
+    "sharpeRatio": "夏普比率"
 }
