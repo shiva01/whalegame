@@ -94,7 +94,7 @@ const Investment: React.FC = () => {
         setTooltipPosition({ top: rect.top - 40, left: rect.left });
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = () => {
         if (tooltipVisible) {
             setTooltipVisible(false);
         }
