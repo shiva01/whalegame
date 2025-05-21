@@ -33,13 +33,20 @@ interface Loan {
     description_en: string;
 }
 
+interface LiveTradingData {
+    runningDays: number;
+    apr: number;
+    sharpeRatio: number;
+    netValue: number;
+}
+
 const Investment: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loans, setLoans] = useState<Loan[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const locale = useLocale() as Locale;
     const t = useTranslations();
-    const [livetradingData, setLivetradingData] = useState<{ [key: string]: any }>({}); 
+    const [livetradingData, setLivetradingData] = useState<{ [key: string]: LiveTradingData }>({}); 
     const [tooltipVisible, setTooltipVisible] = useState<boolean>(false);
     const [tooltipData, setTooltipData] = useState<string>('');
     const [tooltipPosition, setTooltipPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
